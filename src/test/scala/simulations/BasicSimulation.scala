@@ -22,6 +22,7 @@ class BasicSimulation extends Simulation {
 
   setUp(RecipesScenario.scn.inject(heavisideUsers(100) over(10 seconds)).protocols(httpConf))
     .assertions(global.responseTime.max.lessThan(50)
+    .global.successfulRequests.percent.greaterThan(95)
   )
 
 }
