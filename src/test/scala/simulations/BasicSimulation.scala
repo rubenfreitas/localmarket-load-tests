@@ -2,8 +2,9 @@ package simulations
 
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
+import scenarios.{KnowTheCornersScenario, RecipesScenario}
+
 import scala.concurrent.duration._
-import scenarios.RecipesScenario
 
 /**
   * Created by rfreitas
@@ -20,9 +21,13 @@ class BasicSimulation extends Simulation {
     .inferHtmlResources()
 
 
-  setUp(RecipesScenario.scn.inject(heavisideUsers(100) over(10 seconds)).protocols(httpConf))
-    .assertions(global.responseTime.max.lessThan(50)
-    .global.successfulRequests.percent.greaterThan(95)
+  setUp(
+    RecipesScenario.scn.inject(heavisideUsers(20) over (25 seconds)).protocols(httpConf),
+    KnowTheCornersScenario.scn.inject(heavisideUsers(50) over (25 seconds)).protocols(httpConf)
   )
+    .assertions(
+      global.responseTime.max.lessThan(50),
+      global.successfulRequests.percent.greaterThan(97)
+    )
 
 }

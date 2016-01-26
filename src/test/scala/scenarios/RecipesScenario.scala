@@ -1,20 +1,19 @@
 package scenarios
 
+import actions.{HomePage, RecipesPage}
 import io.gatling.core.Predef._
-import io.gatling.http.Predef._
+
+import scala.concurrent.duration._
 
 /**
   * Created by rfreitas
   */
 object RecipesScenario {
 
-  val scn = scenario("Scenario Name")
-    .exec(http("HOME PAGE")
-    .get("/")
-    .check(status.is(200)))
-    .pause(1)
-    .exec(http("RECIPES PAGE")
-    .get("/recipes")
-    .check(status.is(200)))
+  val scn = scenario("RECIPES SCENARIO")
+    .exec(
+      HomePage.homePage.pause(1 seconds, 3 seconds),
+      RecipesPage.recipesPage
+    )
 
 }

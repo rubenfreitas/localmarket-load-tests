@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>io.rfreitas</groupId>
-	<artifactId>localmarket-load-testing</artifactId>
+	<artifactId>localmarket-load-tests</artifactId>
 	<version>1.0-SNAPSHOT</version>
 
 	<properties>
@@ -14,6 +14,7 @@
 		<encoding>UTF-8</encoding>
 
 		<gatling.version>2.2.0-M2</gatling.version>
+		<gatling-plugin.version>2.2.0-M2</gatling-plugin.version>
 
 		<scala-maven-plugin.version>3.2.0</scala-maven-plugin.version>
 	</properties>
@@ -92,6 +93,18 @@
 								<arg>-language:postfixOps</arg>
 							</args>
 						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>io.gatling</groupId>
+				<artifactId>gatling-maven-plugin</artifactId>
+				<version>${gatling-plugin.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>execute</goal>
+						</goals>
 					</execution>
 				</executions>
 			</plugin>
