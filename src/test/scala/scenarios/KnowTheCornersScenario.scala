@@ -18,7 +18,7 @@ object KnowTheCornersScenario {
         0.30 -> FeedPage.feedPage,
         0.15 -> BookmarksPage.bookmarksPage,
         0.10 -> AboutPage.aboutPage
-      ).pause(4 seconds, 25 seconds)
-  )
+      )
+    )
 
 }

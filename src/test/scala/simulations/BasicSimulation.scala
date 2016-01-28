@@ -2,7 +2,7 @@ package simulations
 
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
-import scenarios.{KnowTheCornersScenario, RecipesScenario}
+import scenarios.{AboutScenario, FeedScenario, RecipesScenario}
 
 import scala.concurrent.duration._
 
@@ -23,10 +23,11 @@ class BasicSimulation extends Simulation {
 
   setUp(
     RecipesScenario.scn.inject(heavisideUsers(20) over (25 seconds)).protocols(httpConf),
-    KnowTheCornersScenario.scn.inject(heavisideUsers(50) over (25 seconds)).protocols(httpConf)
+    FeedScenario.scn.inject(heavisideUsers(50) over (25 seconds)).protocols(httpConf),
+    AboutScenario.scn.inject(heavisideUsers(2) over (25 seconds)).protocols(httpConf)
   )
     .assertions(
-      global.responseTime.max.lessThan(50),
+      global.responseTime.max.lessThan(1000),
       global.successfulRequests.percent.greaterThan(97)
     )
 
